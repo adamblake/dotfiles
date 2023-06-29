@@ -16,16 +16,28 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 remark "Updating dotfiles..."
 [ -d "${DOTFILES_DIR}/.git" ] && git --work-tree="${DOTFILES_DIR}" --git-dir="${DOTFILES_DIR}/.git" pull origin main
 
-remark "Symlinking dotfiles..."
+remark "Installing Homebrew..."
+source "$DOTFILES_DIR/install/brew.sh"
+
+remark "Installing and updating Homebrew packages..."
+source "$DOTFILES_DIR/install/brew-packages.sh"
+
+remark "Installing global Python packages..."
+source "$DOTFILES_DIR/install/python.sh"
+
+remark "Configuring git..."
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore" ~
 ln -sfv "$DOTFILES_DIR/git/.gitattributes" ~
 
+remark "Installing oh-my-zsh..."
+source "$DOTFILES_DIR/install/oh-my-zsh.sh"
 
-if test ! "$(command -v brew)"; then
-    remark "Installing Homebrew and packages..."
-    source "$DOTFILES_DIR/install/brew.sh"
-else
-    remark "Installing and updating Homebrew packages..."
-    source "$DOTFILES_DIR/install/brew-packages.sh"
-fi
+remark "Installing Powerlevel10k theme..."
+source "$DOTFILES_DIR/install/powerlevel10k.sh"
+
+remark "Configuring zsh..."
+[ -f "$HOME/.zshrc" ] && mv ~/.zshrc ~/.zshrc.pre-dotfiles
+ln -sfv "$DOTFILES_DIR/zsh/.zshrc" ~
+ln -sfv "$DOTFILES_DIR/zsh/.zshenv" ~
+ln -sfv "$DOTFILES_DIR/zsh/.p10k.zsh" ~
