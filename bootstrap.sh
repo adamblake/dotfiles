@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=1091
 
 function remark {
     echo -e "\n\033[1;33m$1\033[0m"
@@ -19,3 +20,12 @@ remark "Symlinking dotfiles..."
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore" ~
 ln -sfv "$DOTFILES_DIR/git/.gitattributes" ~
+
+
+if test ! "$(command -v brew)"; then
+    remark "Installing Homebrew and packages..."
+    source "$DOTFILES_DIR/install/brew.sh"
+else
+    remark "Installing and updating Homebrew packages..."
+    source "$DOTFILES_DIR/install/brew-packages.sh"
+fi
