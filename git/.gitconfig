@@ -1,0 +1,76 @@
+[alias]
+	logdog = log --decorate --oneline --graph
+	logadog = log --all --decorate --oneline --graph
+
+# use separate file for username / github token / etc
+[include]
+	path = ~/.gitconfig.local
+
+[core]
+	commentchar = ";"
+	editor = vim
+	excludesFile = ~/.gitignore
+    attributesFile = ~/.gitattributes
+
+	# Make `git rebase` safer on macOS.
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
+
+[help]
+    # autocorrect typos
+	autocorrect = 1
+
+[color]
+	ui = auto
+
+[color "diff"]
+	meta = yellow bold
+	commit = green bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+	newMoved = cyan dim
+	oldMoved = blue dim
+	newMovedAlternative = cyan italic
+	oldMovedAlternative = blue italic
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[init]
+	defaultBranch = main
+
+[diff]
+	algorithm = patience
+	colorMoved = default
+    renames = copies
+
+[log]
+	# https://github.com/git/git/commit/acdd37769de8b0fe37a74bfc0475b63bdc55e9dc
+	date = human
+
+[fetch]
+	prune = true
+
+[stash]
+	showPatch = true
+
+[push]
+    default = current
+    autoSetupRemote = true
+	followTags = true
+
+[pull]
+	ff = only
+	default = current
+
+[checkout]
+	defaultRemote = origin
