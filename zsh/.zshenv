@@ -6,3 +6,6 @@ export GPG_TTY=$(tty)
 
 # gcloud
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+
+# Java 
+JAVA_HOME="/opt/homebrew/opt/openjdk"

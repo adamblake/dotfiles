@@ -30,14 +30,12 @@ ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore" ~
 ln -sfv "$DOTFILES_DIR/git/.gitattributes" ~
 
+# configure oh-my-zsh and zsh last because they depend on other packages
 remark "Installing oh-my-zsh..."
 source "$DOTFILES_DIR/install/oh-my-zsh.sh"
-
-remark "Installing Powerlevel10k theme..."
-source "$DOTFILES_DIR/install/powerlevel10k.sh"
+ln -sfv "$DOTFILES_DIR/zsh/.p10k.zsh" ~
 
 remark "Configuring zsh..."
 [ -f "$HOME/.zshrc" ] && mv ~/.zshrc ~/.zshrc.pre-dotfiles
 ln -sfv "$DOTFILES_DIR/zsh/.zshrc" ~
 ln -sfv "$DOTFILES_DIR/zsh/.zshenv" ~
-ln -sfv "$DOTFILES_DIR/zsh/.p10k.zsh" ~
