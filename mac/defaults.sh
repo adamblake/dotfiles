@@ -17,6 +17,7 @@ sudo scutil --set ComputerName "$COMPUTER_NAME"
 sudo scutil --set HostName "$COMPUTER_NAME"
 sudo scutil --set LocalHostName "$COMPUTER_NAME"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+sudo dscacheutil -flushcache
 
 # Menu bar: show battery percentage
 defaults write com.apple.menuextra.battery -bool true
