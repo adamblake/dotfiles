@@ -4,4 +4,5 @@ pip3 install --upgrade pip
 pip3 install --upgrade \
     poetry \
     radian \
-    chartpress
+    chartpress \
+    yq

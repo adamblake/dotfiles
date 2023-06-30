@@ -30,6 +30,13 @@ ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore" ~
 ln -sfv "$DOTFILES_DIR/git/.gitattributes" ~
 
+remark "Configuring file associations..."
+# associate all source code extensions known to Github’s linguist library with VSCode
+# depends on `yq` installed with Python packages
+curl "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml" \
+  | yq -r "to_entries | (map(.value.extensions) | flatten) - [null] | unique | .[]" \
+  | xargs -L 1 -I "{}" duti -s com.microsoft.VSCode {} all
+
 # configure oh-my-zsh and zsh last because they depend on other packages
 remark "Installing oh-my-zsh..."
 source "$DOTFILES_DIR/install/oh-my-zsh.sh"
