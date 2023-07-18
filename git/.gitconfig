@@ -16,8 +16,12 @@
 	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
 	trustctime = false
 
+[http]
+  # https://stackoverflow.com/a/6849424
+	postBuffer = 1048576000
+
 [help]
-    # autocorrect typos
+  # autocorrect typos
 	autocorrect = 1
 
 [color]
