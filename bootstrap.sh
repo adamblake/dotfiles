@@ -22,6 +22,10 @@ source "$DOTFILES_DIR/install/brew.sh"
 remark "Installing and updating Homebrew packages..."
 source "$DOTFILES_DIR/install/brew-packages.sh"
 
+remark "Installing Rust..."
+# depends on rustup (brew)
+source "$DOTFILES_DIR/install/rust.sh"
+
 remark "Installing global Python packages..."
 source "$DOTFILES_DIR/install/python.sh"
 
