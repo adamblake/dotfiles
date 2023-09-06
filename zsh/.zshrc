@@ -86,17 +86,17 @@ cw() {
 
 # open the directory ~/$1/$2 in vscode
 code_nested() {
-  if [ -z ${1+x} ] || [ ! -d "$HOME/$1" ]; then 
+  if [ -z ${1+x} ] || [ ! -d "$HOME/$1" ]; then
     echo "First argument should be a directory in the home directory (~)"
     return
   fi
 
-  if [ -z ${2+x} ]; then 
+  if [ -z ${2+x} ]; then
     echo "You must indicate which ~/$1 folder to open."
     return
   fi
 
-  if [ ! -d "$HOME/$1/$2" ]; then 
+  if [ ! -d "$HOME/$1/$2" ]; then
     echo "The folder \"$HOME/$1/$2\" does not exist."
     return
   fi
@@ -114,3 +114,7 @@ op() { code_nested pd "$1"; }
 compdef "_path_files -W $HOME/work -/ $$ return 0 || return 1" cw
 compdef "_path_files -W $HOME/work -/ $$ return 0 || return 1" ow
 compdef "_path_files -W $HOME/pd -/ $$ return 0 || return 1" op
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
