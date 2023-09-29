@@ -18,6 +18,8 @@ remark "Updating dotfiles..."
 
 remark "Installing Homebrew..."
 source "$DOTFILES_DIR/install/brew.sh"
+mkdir ~/.R
+ln -sfv "$DOTFILES_DIR/R.Makevars" ~/.R/Makevars
 
 remark "Installing and updating Homebrew packages..."
 source "$DOTFILES_DIR/install/brew-packages.sh"
@@ -28,6 +30,9 @@ source "$DOTFILES_DIR/install/rust.sh"
 
 remark "Installing global Python packages..."
 source "$DOTFILES_DIR/install/python.sh"
+
+remark "Installing R packages..."
+Rscript --no-init-file "$DOTFILES_DIR/install/r-packages.r"
 
 remark "Configuring git..."
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~

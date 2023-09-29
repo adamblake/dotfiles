@@ -1,0 +1,8 @@
+# homebrew
+FLIBS   =-L/opt/homebrew/opt/gfortran/lib
+F77     = /opt/homebrew/bin/gfortran
+FC      = /opt/homebrew/bin/gfortran
+
+CFLAGS   = -I/opt/homebrew/include
+CPPFLAGS = -I/opt/homebrew/include
+CXXFLAGS = -I/opt/homebrew/include
