@@ -1,3 +1,6 @@
+# maintain separate terminal histories
+unsetopt share_history
+
 # need to run these for autocompletion to work
 autoload -Uz +X compinit && compinit
 autoload -Uz +X bashcompinit && bashcompinit
@@ -60,6 +63,9 @@ alias sc='source $HOME/.zshrc'
 # viewing/editing files
 alias edit='$EDITOR'
 alias view='less -FX'
+
+# update brew packages
+alias bu='brew update && brew upgrade && brew cleanup'
 
 # use radian for R (better terminal experience for R)
 alias r=radian
