@@ -43,6 +43,9 @@ remark "Configuring git..."
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/git/.gitignore" ~
 ln -sfv "$DOTFILES_DIR/git/.gitattributes" ~
+source "$DOTFILES_DIR/install/scm-breeze.sh"
+ln -sfv "$DOTFILES_DIR/scm-breeze/.git.scmbrc" ~
+ln -sfv "$DOTFILES_DIR/scm-breeze/.scmbrc" ~
 
 remark "Configuring MacOS..."
 source "$DOTFILES_DIR/mac/defaults.sh"
