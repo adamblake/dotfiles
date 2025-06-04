@@ -3,8 +3,10 @@
 	logadog = log --all --decorate --oneline --graph
 
 # use separate file for username / github token / etc
-[include]
-	path = ~/.gitconfig.local
+[includeIf "gitdir:~/personal/"]
+  path = ~/.gitconfig-personal
+[includeIf "gitdir:~/work/"]
+  path = ~/.gitconfig-work
 
 [core]
 	commentchar = ";"
@@ -81,6 +83,3 @@
 
 [diff "sopsdiffer"]
 	textconv = sops -d --config /dev/null
-
-[safe]
-	directory = /Users/adamblake/work/actions-runner/_work/docker-stacks/docker-stacks
