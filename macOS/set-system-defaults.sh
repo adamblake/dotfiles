@@ -1,6 +1,10 @@
-# shellcheck shell=bash
+#!/usr/bin/env bash
 
-COMPUTER_NAME="adamblake"
+if [ -z "$COMPUTER_NAME" ]; then
+    current_computer_name=$(scutil --get ComputerName 2>/dev/null || hostname)
+    read -rp "Computer name [$current_computer_name]: " COMPUTER_NAME
+    COMPUTER_NAME=${COMPUTER_NAME:-$current_computer_name}
+fi
 
 # Ask for the administrator password upfront
 sudo -v

@@ -1,4 +1,4 @@
-export EDITOR=code
+export EDITOR="code --wait"
 export VISUAL=code
 
 # make git use pin-entry for gpg2
@@ -12,3 +12,4 @@ JAVA_HOME="/opt/homebrew/opt/openjdk"
 
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"

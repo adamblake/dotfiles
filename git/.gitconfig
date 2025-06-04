@@ -78,3 +78,9 @@
 
 [checkout]
 	defaultRemote = origin
+
+[diff "sopsdiffer"]
+	textconv = sops -d --config /dev/null
+
+[safe]
+	directory = /Users/adamblake/work/actions-runner/_work/docker-stacks/docker-stacks
