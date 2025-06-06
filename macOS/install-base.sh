@@ -1,6 +1,11 @@
 #!/bin/bash
+# shellcheck disable=1091
 
 current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [ -z "${RUBY_VERSION}" ]; then
+    export RUBY_VERSION="3.4.1"
+fi
 
 
 # Utility functions
@@ -34,18 +39,8 @@ brew_bin="${brew_prefix}/bin/brew"
 if [ ! -x "${brew_bin}" ]; then
     remark "Installing Homebrew"
     NONINTERACTIVE=1 /bin/bash -c "$(sudo curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    
-    # ensure the brew binary gets added to the PATH when the shell starts
-    touch ~/.zprofile
-    shellenv_cmd="eval \"\$(${brew_bin} shellenv)\""
-    if ! grep -Fxq "$shellenv_cmd" ~/.zprofile; then
-        echo >> ~/.zprofile
-        echo "$shellenv_cmd" >> ~/.zprofile
-    fi
+    eval "$(${brew_bin} shellenv)"
 fi
-
-# ensure the brew binary is in the PATH
-eval "$(${brew_bin} shellenv)"
 
 describe "Disabling Homebrew analytics"
 brew analytics off
@@ -63,9 +58,9 @@ brew bundle --file "$current_dir/Brewfile"
 brew upgrade
 brew cleanup
 
-if ! command -v ruby &> /dev/null || [[ "$(ruby -v)" != *"3.4.1"* ]]; then
+if ! command -v ruby &> /dev/null || [[ "$(ruby -v)" != *"${RUBY_VERSION}"* ]]; then
     remark "Installing Ruby"
-    ruby-install ruby 3.4.1
+    ruby-install ruby "${RUBY_VERSION}"
 fi
 
 if [ ! -d "$HOME/.scm_breeze" ]; then
@@ -73,10 +68,6 @@ if [ ! -d "$HOME/.scm_breeze" ]; then
     git clone https://github.com/scmbreeze/scm_breeze.git "$HOME/.scm_breeze"
     ~/.scm_breeze/install.sh
 fi
-
-remark "Configuring R Makevars"
-mkdir -p ~/.R
-ln -sfv "$current_dir/R.Makevars" ~/.R/Makevars
 
 describe "Configuring VSCode file associations"
 # associate all source code extensions known to Github’s linguist library with VSCode
@@ -90,6 +81,12 @@ source "$current_dir/set-system-defaults.sh"
 describe "Configuring Dock"
 source "$current_dir/set-dock-apps.sh"
 
+remark "Configuring R Makevars"
+mkdir -p ~/.R
+ln -sfv "$current_dir/R.Makevars" ~/.R/Makevars
+
 remark "Configuring zsh"
-ln -sfv "$current_dir/.zshrc" ~
-ln -sfv "$current_dir/.zshenv" ~
+ln -sfv "$current_dir/zsh/.zshrc" ~
+ln -sfv "$current_dir/zsh/.zshenv" ~
+ln -sfv "$current_dir/zsh/.zprofile" ~
+ln -sfv "$current_dir/zsh/starship.toml" ~/.config

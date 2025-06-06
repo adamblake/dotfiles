@@ -26,14 +26,14 @@ function describe {
 # keep a reference to this script's directory
 export DOTFILES_DIR="$current_dir"
 
-# # choose the base install script based on the OS
-# if [[ "$OSTYPE" == "darwin"* ]]; then
-#     describe "Detected macOS: using macOS install script"
-#     source "$DOTFILES_DIR/macOS/install-base.sh"
-# else
-#     describe "Currently unsupported OS: $OSTYPE"
-#     exit 1
-# fi
+# choose the base install script based on the OS
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    describe "Detected macOS: using macOS install script"
+    source "$DOTFILES_DIR/macOS/install-base.sh"
+else
+    describe "Currently unsupported OS: $OSTYPE"
+    exit 1
+fi
 
 remark "Configuring git"
 ln -sfv "$DOTFILES_DIR/git/.gitconfig" ~

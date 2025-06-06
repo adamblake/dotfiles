@@ -1,3 +1,30 @@
+export TERM="xterm-256color"
+
+# Pager
+export PAGER=less
+# Less status line
+export LESS='-R -f -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+export LESSCHARSET='utf-8'
+
+# LESS man page colors (makes Man pages more readable).
+export LESS_TERMCAP_mb=$'\E[01;31m'
+export LESS_TERMCAP_md=$'\E[01;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[00;44;37m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[01;32m'
+
+# History
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=1000000
+export LISTMAX=50
+# don't keep history when running as root
+if [[ $UID == 0 ]]; then
+    unset HISTFILE
+    export SAVEHIST=0
+fi
 # maintain separate terminal histories
 unsetopt share_history
 setopt noincappendhistory
@@ -9,23 +36,23 @@ autoload -Uz +X compinit && compinit
 autoload -Uz +X bashcompinit && bashcompinit
 
 # gcloud shell and completion
-if [ -f '/Users/adamblake/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/adamblake/google-cloud-sdk/path.zsh.inc'; fi
-if [ -f '/Users/adamblake/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/adamblake/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
 
 # direnv
 emulate zsh -c "$(direnv hook zsh)"
 
 # >>> scm_breeze >>>
-[ -s "~/.scm_breeze/scm_breeze.sh" ] && source "~/.scm_breeze/scm_breeze.sh"
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 # <<< scm_breeze <<<
 
 # >>> VSCode venv deactivate hook >>>
-[ -f ~/.vscode-python/deactivate ] && source ~/.vscode-python/deactivate
+[ -f "$HOME/.vscode-python/deactivate" ] && source "$HOME/.vscode-python/deactivate"
 # <<< VSCode venv deactivate hook <<<
 
 # >>> chruby >>>
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+source "$(brew --prefix)/opt/chruby/share/chruby/chruby.sh"
+source "$(brew --prefix)/opt/chruby/share/chruby/auto.sh"
 chruby ruby-3.4.1
 # <<< chruby <<<
 
@@ -41,7 +68,6 @@ alias bu='brew update && brew upgrade && brew cleanup'
 
 alias python=python3
 alias pip="uv pip"
-alias r=/Users/adamblake/.local/bin/radian
 
 # git stuff
 alias gs='git status'
@@ -54,7 +80,7 @@ alias gfr='git flow release'
 alias gfs='git flow support'
 alias gfv='git flow version'
 
-alias setup-r='Rscript --no-init-file "$HOME/pd/dotfiles/R/r-packages.r"'
+alias setup-r='Rscript --no-init-file "$HOME/personal/dotfiles/R/r-packages.r"'
 
 # cd into a ~/work directory
 cdw() {
@@ -102,3 +128,8 @@ compdef "_path_files -W $HOME/personal -/ $$ return 0 || return 1" op
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
+
+# load starship prompt
+if (which starship > /dev/null) then
+  eval "$(starship init zsh)"
+fi
