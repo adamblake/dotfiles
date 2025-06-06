@@ -58,6 +58,12 @@ brew bundle --file "$current_dir/Brewfile"
 brew upgrade
 brew cleanup
 
+remark "Configuring jenv for Java version management"
+jenv enable-plugin export
+jenv add "$(brew --prefix)/opt/openjdk@17"
+jenv add "$(brew --prefix)/opt/openjdk@21"
+jenv global version 17
+
 if ! command -v ruby &> /dev/null || [[ "$(ruby -v)" != *"${RUBY_VERSION}"* ]]; then
     remark "Installing Ruby"
     ruby-install ruby "${RUBY_VERSION}"

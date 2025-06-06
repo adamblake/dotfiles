@@ -35,12 +35,14 @@ setopt appendhistory
 autoload -Uz +X compinit && compinit
 autoload -Uz +X bashcompinit && bashcompinit
 
-# gcloud shell and completion
+# >>> gcloud shell and completion >>>
 if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
 if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+# <<< gcloud shell and completion <<<
 
-# direnv
+# >>> direnv >>>
 emulate zsh -c "$(direnv hook zsh)"
+# <<< direnv <<<
 
 # >>> scm_breeze >>>
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
@@ -55,6 +57,11 @@ source "$(brew --prefix)/opt/chruby/share/chruby/chruby.sh"
 source "$(brew --prefix)/opt/chruby/share/chruby/auto.sh"
 chruby ruby-3.4.1
 # <<< chruby <<<
+
+# >>> jenv >>>
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
+# <<< jenv <<<
 
 # enable autocompletion for aliases
 setopt completealiases
