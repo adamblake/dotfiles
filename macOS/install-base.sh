@@ -69,12 +69,6 @@ if ! command -v ruby &> /dev/null || [[ "$(ruby -v)" != *"${RUBY_VERSION}"* ]]; 
     ruby-install ruby "${RUBY_VERSION}"
 fi
 
-if [ ! -d "$HOME/.scm_breeze" ]; then
-    remark "Installing SCM Breeze"
-    git clone https://github.com/scmbreeze/scm_breeze.git "$HOME/.scm_breeze"
-    ~/.scm_breeze/install.sh
-fi
-
 describe "Configuring VSCode file associations"
 # associate all source code extensions known to Github’s linguist library with VSCode
 curl "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml" \

@@ -44,10 +44,6 @@ if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-clou
 emulate zsh -c "$(direnv hook zsh)"
 # <<< direnv <<<
 
-# >>> scm_breeze >>>
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
-# <<< scm_breeze <<<
-
 # >>> VSCode venv deactivate hook >>>
 [ -f "$HOME/.vscode-python/deactivate" ] && source "$HOME/.vscode-python/deactivate"
 # <<< VSCode venv deactivate hook <<<
