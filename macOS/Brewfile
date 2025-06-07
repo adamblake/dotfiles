@@ -1,6 +1,7 @@
 tap "homebrew/autoupdate"
 tap "r-lib/rig"
 brew "automake"
+brew "awscli"
 brew "chruby"
 brew "coreutils"
 brew "direnv"
