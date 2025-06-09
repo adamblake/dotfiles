@@ -127,10 +127,12 @@ compdef "_path_files -W $HOME/personal -/ $$ return 0 || return 1" cdp
 compdef "_path_files -W $HOME/work -/ $$ return 0 || return 1" ow
 compdef "_path_files -W $HOME/personal -/ $$ return 0 || return 1" op
 
+# enable Docker CLI completions.
+fpath=(/Users/adamblake/.docker/completions $fpath)
+
 # load other auto-completions from ~/.zfunc
-autoload -Uz compinit
 zstyle ':completion:*' menu select
-fpath+=~/.zfunc
+fpath=(~/.zfunc $fpath)
 
 # load starship prompt
 if (which starship > /dev/null) then
