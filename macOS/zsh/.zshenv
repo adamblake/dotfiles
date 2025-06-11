@@ -13,6 +13,10 @@ export GPG_TTY=$(tty)
 # gcloud
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
+# Go
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 . "$HOME/.cargo/env"
