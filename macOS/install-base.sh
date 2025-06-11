@@ -86,6 +86,7 @@ mkdir -p ~/.R
 ln -sfv "$current_dir/R.Makevars" ~/.R/Makevars
 
 remark "Configuring zsh"
+mkdir -p ~/.config
 ln -sfv "$current_dir/zsh/.zshrc" ~
 ln -sfv "$current_dir/zsh/.zshenv" ~
 ln -sfv "$current_dir/zsh/.zprofile" ~
