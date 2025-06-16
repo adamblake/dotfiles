@@ -20,3 +20,6 @@ export PATH="$GOPATH/bin:$PATH"
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 . "$HOME/.cargo/env"
+
+# uv tools
+export PATH="$HOME/.local/bin:$PATH"

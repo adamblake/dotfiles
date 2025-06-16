@@ -47,3 +47,6 @@ remark "Installing R and R packages"
 rig add release
 Rscript --no-init-file "$DOTFILES_DIR/R/r-packages.r"
 ln -sfv "$DOTFILES_DIR/R/.Rprofile" ~
+
+remark "Installing Python-based tools"
+uv tool install pre-commit
