@@ -50,3 +50,6 @@ ln -sfv "$DOTFILES_DIR/R/.Rprofile" ~
 
 remark "Installing Python-based tools"
 uv tool install pre-commit
+
+remark "Updating Node.js tools"
+npm install -g npm@latest
