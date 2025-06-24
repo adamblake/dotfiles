@@ -11,6 +11,7 @@
 [core]
 	commentchar = ";"
 	editor = vim
+	pager = "less -R -f -X -i -F"
 	excludesFile = ~/.gitignore
     attributesFile = ~/.gitattributes
 

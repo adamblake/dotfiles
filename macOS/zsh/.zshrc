@@ -3,7 +3,7 @@ export TERM="xterm-256color"
 # Pager
 export PAGER=less
 # Less status line
-export LESS='-R -f -X -i -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
+export LESS='-R -f -X -i -F -P ?f%f:(stdin). ?lb%lb?L/%L.. [?eEOF:?pb%pb\%..]'
 export LESSCHARSET='utf-8'
 
 # LESS man page colors (makes Man pages more readable).
