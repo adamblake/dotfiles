@@ -22,8 +22,8 @@ export SAVEHIST=1000000
 export LISTMAX=50
 # don't keep history when running as root
 if [[ $UID == 0 ]]; then
-    unset HISTFILE
-    export SAVEHIST=0
+  unset HISTFILE
+  export SAVEHIST=0
 fi
 # maintain separate terminal histories
 unsetopt share_history
@@ -128,13 +128,13 @@ compdef "_path_files -W $HOME/work -/ $$ return 0 || return 1" ow
 compdef "_path_files -W $HOME/personal -/ $$ return 0 || return 1" op
 
 # enable Docker CLI completions.
-fpath=(/Users/adamblake/.docker/completions $fpath)
+fpath=("$HOME/.docker/completions" "${fpath[@]}")
 
 # load other auto-completions from ~/.zfunc
 zstyle ':completion:*' menu select
-fpath=(~/.zfunc $fpath)
+fpath=("$HOME/.zfunc" "${fpath[@]}")
 
 # load starship prompt
-if (which starship > /dev/null) then
+if (which starship >/dev/null); then
   eval "$(starship init zsh)"
 fi
