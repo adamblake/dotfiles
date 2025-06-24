@@ -1,92 +1,94 @@
 [alias]
-	logdog = log --decorate --oneline --graph
-	logadog = log --all --decorate --oneline --graph
+logdog = log --decorate --oneline --graph
+logadog = log --all --decorate --oneline --graph
 
 # use separate file for username / github token / etc
 [includeIf "gitdir:~/personal/"]
-  path = ~/.gitconfig-personal
+path = ~/.gitconfig-personal
 [includeIf "gitdir:~/work/"]
-  path = ~/.gitconfig-work
+path = ~/.gitconfig-work
 
 [core]
-	commentchar = ";"
-	editor = vim
-	pager = "less -R -f -X -i -F"
-	excludesFile = ~/.gitignore
-    attributesFile = ~/.gitattributes
+commentchar = ";"
+editor = vim
+pager = "less -R -f -X -i -F"
+excludesFile = ~/.gitignore
+attributesFile = ~/.gitattributes
 
-	# Make `git rebase` safer on macOS.
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
+# Make `git rebase` safer on macOS.
+# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+trustctime = false
 
 [http]
-  # https://stackoverflow.com/a/6849424
-	postBuffer = 1048576000
+# https://stackoverflow.com/a/6849424
+postBuffer = 1048576000
 
 [help]
-  # autocorrect typos
-	autocorrect = 1
+# autocorrect typos
+autocorrect = 1
 
 [color]
-	ui = auto
+ui = auto
 
 [color "diff"]
-	meta = yellow bold
-	commit = green bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-	newMoved = cyan dim
-	oldMoved = blue dim
-	newMovedAlternative = cyan italic
-	oldMovedAlternative = blue italic
+meta = yellow bold
+commit = green bold
+frag = magenta bold
+old = red bold
+new = green bold
+whitespace = red reverse
+newMoved = cyan dim
+oldMoved = blue dim
+newMovedAlternative = cyan italic
+oldMovedAlternative = blue italic
 
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+current = yellow reverse
+local = yellow
+remote = green
 
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
+added = yellow
+changed = green
+untracked = cyan
 
 [init]
-	defaultBranch = main
+defaultBranch = main
 
 [diff]
-	algorithm = patience
-	colorMoved = default
-    renames = copies
+algorithm = patience
+colorMoved = default
+renames = copies
 
 [log]
-	# https://github.com/git/git/commit/acdd37769de8b0fe37a74bfc0475b63bdc55e9dc
-	date = human
+# https://github.com/git/git/commit/acdd37769de8b0fe37a74bfc0475b63bdc55e9dc
+date = human
 
 [fetch]
-	prune = true
+prune = true
 
 [stash]
-	showPatch = true
+showPatch = true
 
 [push]
-    default = current
-    autoSetupRemote = true
-	followTags = true
+default = current
+autoSetupRemote = true
+followTags = true
 
 [pull]
-	ff = only
-	default = current
+ff = only
+default = current
 
 [checkout]
-	defaultRemote = origin
+defaultRemote = origin
 
 [diff "sopsdiffer"]
-	textconv = sops -d --config /dev/null
+textconv = sops -d --config /dev/null
+
 [credential "https://github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+helper =
+helper = !/opt/homebrew/bin/gh auth git-credential
+
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/opt/homebrew/bin/gh auth git-credential
+helper =
+helper = !/opt/homebrew/bin/gh auth git-credential
