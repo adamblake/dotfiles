@@ -1,3 +1,5 @@
+# shellcheck disable=SC1091
+
 export TERM="xterm-256color"
 
 # Pager
@@ -63,7 +65,7 @@ eval "$(jenv init -)"
 setopt completealiases
 
 # viewing/editing files
-alias edit="$EDITOR"
+alias edit="\$EDITOR"
 alias view='less -FX'
 
 # update brew packages
