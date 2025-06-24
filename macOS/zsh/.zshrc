@@ -32,6 +32,15 @@ unsetopt share_history
 setopt noincappendhistory
 setopt nosharehistory
 setopt appendhistory
+# filter by what's already typed
+setopt hist_find_no_dups
+setopt hist_verify
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search   # Up arrow
+bindkey "^[[B" down-line-or-beginning-search # Down arrow
 
 # need to run these for autocompletion to work
 autoload -Uz +X compinit && compinit
