@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # shellcheck disable=1091
 
-current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ -z "$COMPUTER_NAME" ]; then
     current_computer_name=$(scutil --get ComputerName 2>/dev/null || hostname)

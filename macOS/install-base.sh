@@ -1,12 +1,11 @@
 #!/bin/bash
 # shellcheck disable=1091
 
-current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+current_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [ -z "${RUBY_VERSION}" ]; then
     export RUBY_VERSION="3.4.1"
 fi
-
 
 # Utility functions
 # -----------------------------------------------------------------------------
@@ -64,16 +63,16 @@ jenv add "$(brew --prefix)/opt/openjdk@17"
 jenv add "$(brew --prefix)/opt/openjdk@21"
 jenv global version 17
 
-if ! command -v ruby &> /dev/null || [[ "$(ruby -v)" != *"${RUBY_VERSION}"* ]]; then
+if ! command -v ruby &>/dev/null || [[ "$(ruby -v)" != *"${RUBY_VERSION}"* ]]; then
     remark "Installing Ruby"
     ruby-install ruby "${RUBY_VERSION}"
 fi
 
 describe "Configuring VSCode file associations"
 # associate all source code extensions known to Github’s linguist library with VSCode
-curl "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml" \
-  | yq -r "to_entries | (map(.value.extensions) | flatten) - [null] | unique | .[]" \
-  | xargs -L 1 -I "{}" duti -s com.microsoft.VSCode {} all
+curl "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml" |
+    yq -r "to_entries | (map(.value.extensions) | flatten) - [null] | unique | .[]" |
+    xargs -L 1 -I "{}" duti -s com.microsoft.VSCode {} all
 
 remark "Configuring MacOS"
 source "$current_dir/set-system-defaults.sh"
