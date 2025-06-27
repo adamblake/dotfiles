@@ -53,3 +53,6 @@ uv tool install pre-commit
 
 remark "Updating Node.js tools"
 npm install -g npm@latest
+
+remark "Installing GCLoud Kubernetes Authenticator"
+gcloud components install gke-gcloud-auth-plugin --quiet
